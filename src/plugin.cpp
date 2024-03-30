@@ -9,8 +9,8 @@ struct Hooks {
             auto a_actor = a_AP->GetUserData();            
             float f_mult = a_actor->AsActorValueOwner()->GetActorValue(RE::ActorValue::kShoutRecoveryMult);  
             float basetime = 1.0f;
-            float shoutrecoveryfactor = 100.0f;
-            float shoutrecoverycap = 20.0f;
+            float shoutrecoveryfactor = 0.0f;
+            float shoutrecoverycap = 0.0f;
             float shoutrecoverymultiplier = 100.0f;
             
             if (a_AP->high->currentShoutVariation > 3) {
@@ -35,7 +35,7 @@ struct Hooks {
                                      4,
                                      {a_AP->high->currentShout->variations[a_AP->high->currentShoutVariation].spell});
             }
-            float cappedshoutrecovery = (std::max(shoutrecoverycap, (f_mult*100.0f+shoutrecoveryfactor-100.0f)))/100.0f;
+            float cappedshoutrecovery = (std::max(shoutrecoverycap, (f_mult*100.0f+shoutrecoveryfactor)))/100.0f;
             RecoveryTime = basetime * shoutrecoverymultiplier * cappedshoutrecovery / 100.0f;
 
             func(a_AP, RecoveryTime);
@@ -55,15 +55,15 @@ struct Hooks {
             uint32_t menu_form = 0;
             auto* a_ui = RE::UI::GetSingleton();
             if (a_ui->IsMenuOpen(RE::MagicMenu::MENU_NAME)) {
-                RE::ConsoleLog::GetSingleton()->Print("beep1");
+
                 auto* magic_menu = static_cast<RE::MagicMenu*>(a_ui->GetMenu(RE::MagicMenu::MENU_NAME).get());
                 if (magic_menu) {
-                    RE::ConsoleLog::GetSingleton()->Print("beep2");
+
                     RE::GFxValue result;
                     magic_menu->uiMovie->GetVariable(&result,
                                                      "_root.Menu_mc.inventoryLists.itemList.selectedEntry.formId");
                     if (result.GetType() == RE::GFxValue::ValueType::kNumber) {
-                        RE::ConsoleLog::GetSingleton()->Print("beep3");
+
                         menu_form = static_cast<std::uint32_t>(result.GetNumber());
                     }
                 }

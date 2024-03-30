@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.21)
 
 # [BEGIN set_project_name]
 # Set your project name. This will be the name of your SKSE .dll file.
-project(ShoutRecoveryOverhaul VERSION 0.1.0 LANGUAGES CXX)
+project(ShoutRecoveryOverhaul VERSION 1.0 LANGUAGES CXX)
 
 # [END set_project_name]
 
