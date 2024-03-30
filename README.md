@@ -1,4 +1,4 @@
-# Magic Utils
+# Shout Recovery Overhaul
 
 Built using commonlibsse-ng
 
